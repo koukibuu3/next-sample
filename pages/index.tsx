@@ -1,7 +1,8 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+
+import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +17,13 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           This is <a href="https://nextjs.org">Next.js</a> sample.
         </h1>
+
+        <div className={styles.grid}>
+          <a href="/sample/database" className={styles.card}>
+            <h2>Database sample &rarr;</h2>
+            <p>Try connecting to the database and processing.</p>
+          </a>
+        </div>
       </main>
 
       <footer className={styles.footer}>
@@ -24,14 +32,14 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
