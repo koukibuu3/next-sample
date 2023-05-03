@@ -24,6 +24,23 @@ class Comment {
     )
   }
 
+  static async create(text: string) {
+    const { rows } = await sql<DComment>`
+      INSERT INTO comments (text, created_at)
+      VALUES (${text}, NOW())
+      RETURNING *
+    `
+    const comment = rows[0]
+    console.log('inserting...', comment)
+
+    return new Comment(
+      comment.id,
+      comment.text,
+      comment.created_at,
+      comment.updated_at
+    ).serializeAsJSON()
+  }
+
   private serializeAsJSON() {
     return {
       id: this.id,

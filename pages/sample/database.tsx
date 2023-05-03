@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
@@ -11,7 +12,8 @@ type Props = {
 }
 
 const DatabasePage: NextPage<Props> = ({ defaultComments }) => {
-  const { comments } = useComments(defaultComments)
+  const { comments, addComment } = useComments(defaultComments)
+  const [input, setInput] = useState('')
 
   return (
     <div className={styles.container}>
@@ -22,6 +24,22 @@ const DatabasePage: NextPage<Props> = ({ defaultComments }) => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>This is database sample.</h1>
+        <label>
+          テキスト：
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </label>
+        <button
+          onClick={() => {
+            addComment(input)
+          }}
+        >
+          送信
+        </button>
+
         <ul>
           {comments.map((comment) => (
             <li key={comment.id}>
